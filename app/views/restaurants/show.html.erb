@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+
+<div class="justify-content-center">
+
+<h1><%= @restaurant.name  %></h1>
+<h6><%= @restaurant.address %></h6>
+
+
+
+<% @restaurant.reviews.each do |review| %>
+  <p><%= review.content %> - <%= review.created_at %> - <%= review.rating %>
+  <%= link_to "delete review", review_path(review),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}  %></p>
+<% end %>
+
+
+<div>
+  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class:"btn btn-primary " %>
+  <%= link_to "Back to restaurants", restaurants_path, class:"btn btn-primary " %>
+  <%= link_to "Leave a review", new_restaurant_review_path(@restaurant),class:"btn btn-primary " %>
+  <%= link_to "Destroy this restaurant", @restaurant, method: :delete, class:"btn btn-danger" %>
+</div>
+
+</div>
